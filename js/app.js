@@ -1,3 +1,4 @@
+const errorMsg = document.getElementById('error-msg');
 // toggle spinner 
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
@@ -13,14 +14,28 @@ const loadPhones = () => {
     const searchTextValue = (searchText.value).toLowerCase();
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchTextValue}`;
     // console.log(url);
+    searchText.value = '';
+    if(searchTextValue == ''){
+        errorMsg.innerText = 'Search something... Input field cannot be empty.'
+        toggleSpinner('none');
+        return;
+    }
+    if(searchTextValue < 0){
+        errorMsg.innerText = 'You cannot give negaitve value....'
+        toggleSpinner('none');
+        return;
+    }
     fetch(url)
     .then(response => response.json())
     .then(data => displayPhones(data.data.slice(0,20)))
-    searchText.value = '';
 }
 
 const displayPhones = phones => {
     console.log(phones);
+    if(phones.length === 0){
+        errorMsg.innerText = 'No phone found...';
+        // return;
+    }
     const divContainer = document.getElementById('search-result');
     divContainer.textContent = '';
     phones.forEach(phone => {
@@ -38,6 +53,7 @@ const displayPhones = phones => {
         </div>
         `;
         divContainer.appendChild(div);
+        errorMsg.innerText = '';
         
     })
     toggleSpinner('none');
