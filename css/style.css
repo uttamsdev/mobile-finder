@@ -8,7 +8,7 @@
 body {
   /* background-color: #f3f1ff; */
   /* background-color: #f5f4fa; */
-  background-color: #eb96961a;
+  background-color: #eb96960c;
 }
 #search-result {
   display: grid;
@@ -29,6 +29,9 @@ body {
 .phone-container img {
   padding-top: 20px;
   width: 320px;
+}
+#spinner{
+    display: none;
 }
 
 @media (max-width: 688px) {
