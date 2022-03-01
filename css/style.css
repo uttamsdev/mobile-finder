@@ -38,6 +38,13 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
+#phone-details{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+}
+
+/* phone devices responsive  */
 @media (max-width: 688px) {
   #search-result {
     grid-template-columns: repeat(1, 1fr);
@@ -56,8 +63,6 @@ body {
        margin: 0 auto !important;
        display: flex;
        justify-content: center;
-       /* align-items: center !important; */
-       /* flex-direction: column !important; */
   }
   #button-addon2{
       margin-top: 10px;
