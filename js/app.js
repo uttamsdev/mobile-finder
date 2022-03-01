@@ -67,16 +67,19 @@ const displayPhones = phones => {
 
 //load phone details by ID
 const loadPhoneDetails = id => {
-    // console.log(phoneId);
+    console.log(id);
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
     .then(response => response.json())
-    .then(data => displayPhoneDetails(data.data))
+    .then(data => {
+        displayPhoneDetails(data.data)
+        displaySensor(data.data)
+    })
 }
 
 //Dipslay phone details function
 const displayPhoneDetails = phone => {
-    console.log(phone.mainFeatures);
+    // console.log(phone.mainFeatures.sensors);
     const divContainer = document.getElementById('phone-details');
     const div = document.createElement('div');
     div.className = "search-details";
@@ -90,8 +93,37 @@ const displayPhoneDetails = phone => {
             <p><span class="fw-bold">DisplaySize : </span>${phone.mainFeatures.displaySize}</p>
             <p><span class="fw-bold">Memory : </span>${phone.mainFeatures.memory}</p>
             <p><span class="fw-bold">Storage : </span>${phone.mainFeatures.storage}</p>
+            <span class="fw-bold">Sensor : </span>
+            <ul id="sensor"></ul>
             </div>
         </div>
     `;
     divContainer.appendChild(div);
+}
+
+const displaySensor = sensors => {
+    
+    const allSensor = sensors.mainFeatures.sensors;
+    // console.log(sensor);
+    
+    const sensorID = document.getElementById('sensor');
+    // console.log(sensorID);
+    // console.log(sensors);
+    // sensors.forEach(sensor => {
+    //     const li = document.createElement('li');
+    //     li.innerText = `${sensor}`;
+    //     sensorID.appendChild(li);
+    // })
+    // console.log(sensors.length);
+    allSensor.forEach(sensor => {
+        console.log(sensor);
+        // const li = document.createElement('li');
+        const li = document.createElement('li');
+        li.innerHTML = `${sensor}`;
+        sensorID.appendChild(li);
+        // li.innerText = `${sensor}`;
+        // sensorID.appendChild(sensor);
+    })
+    console.log(sensorID);
+    
 }
