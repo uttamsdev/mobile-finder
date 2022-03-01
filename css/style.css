@@ -7,8 +7,8 @@
 }
 body {
   /* background-color: #f3f1ff; */
-  /* background-color: #f5f4fa; */
-  background-color: #eb96960c;
+  background-color: #f5f4fa;
+  /* background-color: #eb96960c; */
 }
 #search-result {
   display: grid;
@@ -26,20 +26,40 @@ body {
   align-items: center;
   background-color: white;
 }
+
 .phone-container img {
   padding-top: 20px;
   width: 320px;
 }
-#spinner{
-    display: none;
+#spinner {
+  display: none;
 }
-
+#error-msg {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
 @media (max-width: 688px) {
   #search-result {
     grid-template-columns: repeat(1, 1fr);
   }
   .phone-container img {
-  padding-top: 20px;
-  width: 260px;
-}
+    padding-top: 20px;
+    width: 260px;
+  }
+  #input-field{
+      width: 300px !important;
+      margin: 0;
+  }
+  .input-area{
+      margin: 5px !important;
+       width: 300px !important;
+       margin: 0 auto !important;
+       display: flex;
+       justify-content: center;
+       /* align-items: center !important; */
+       /* flex-direction: column !important; */
+  }
+  #button-addon2{
+      margin-top: 10px;
+  }
 }

@@ -43,7 +43,7 @@ const displayPhones = phones => {
         const div = document.createElement('div');
         div.className = "phone-container";
         div.innerHTML = `
-        <div class="card border-0">
+        <div class="card border-0 text-center">
             <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
