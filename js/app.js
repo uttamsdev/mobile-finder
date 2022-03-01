@@ -95,6 +95,15 @@ const displayPhoneDetails = phone => {
             <p><span class="fw-bold">Storage : </span>${phone.mainFeatures.storage}</p>
             <span class="fw-bold">Sensor : </span>
             <ul id="sensor"></ul>
+            <h5>Other Features: </h5>
+            <p><span class="fw-bold">WLAN : </span>${phone.others.WLAN ? phone.others.WLAN : 'Not found'}</p>
+            <p><span class="fw-bold">Bluetooth : </span>${phone.others.Bluetooth ? phone.others.Bluetooth : 'Not found'}</p>
+            <p><span class="fw-bold">GPS : </span>${phone.others.GPS ? phone.others.GPS : 'Not found'}</p>
+            <p><span class="fw-bold">NFC : </span>${phone.others.NFC ? phone.others.NFC : 'Not found'}</p>
+            <p><span class="fw-bold">Radio : </span>${phone.others.Radio ? phone.others.Radio : 'Not found'}</p>
+            <p><span class="fw-bold">USB : </span>${phone.others.USB ? phone.others.Radio: 'Not found'}</p>
+
+
             </div>
         </div>
     `;
