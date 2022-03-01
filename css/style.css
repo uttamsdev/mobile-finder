@@ -47,6 +47,9 @@ body {
     margin: 0 auto;
     margin-top: 10px;
 }
+.search-details{
+    margin: 10px 20px;
+}
 
 /* phone devices responsive  */
 @media (max-width: 688px) {
@@ -71,4 +74,7 @@ body {
   #button-addon2 {
     margin-top: 10px;
   }
+  /* .search-details{
+      width: 200px !important;
+  } */
 }

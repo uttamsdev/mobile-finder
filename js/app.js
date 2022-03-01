@@ -81,7 +81,7 @@ const displayPhoneDetails = phone => {
     const div = document.createElement('div');
     div.className = "search-details";
     div.innerHTML = `
-        <div class="card" style="width: 30rem;">
+        <div class="card">
             <img src="${phone.image}" class="card-img-top w-50 text-center" alt="...">
             <div class="card-body">
             <p class="text-danger"><span class="fw-bold text-black">Release date: </span>${phone.releaseDate ? phone.releaseDate : 'No Release Date Found'}</p>
