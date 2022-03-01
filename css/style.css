@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* font-family: 'Open Sans', sans-serif; */
   font-family: "Poppins", sans-serif;
 }
 body {
@@ -10,16 +9,16 @@ body {
   background-color: #f5f4fa;
   /* background-color: #eb96960c; */
 }
+/* search results area  */
 #search-result {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px;
 }
+/* cards container  */
 .phone-container {
   margin-top: 20px;
   margin-bottom: 30px;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   justify-content: center;
@@ -31,6 +30,7 @@ body {
   padding-top: 20px;
   width: 320px;
 }
+/* spinner & error message  */
 #spinner {
   display: none;
 }
@@ -38,10 +38,14 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
-#phone-details{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    place-items: center;
+#phone-details {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  place-items: center;
+}
+.search-details img{
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 /* phone devices responsive  */
@@ -53,18 +57,18 @@ body {
     padding-top: 20px;
     width: 260px;
   }
-  #input-field{
-      width: 300px !important;
-      margin: 0;
+  #input-field {
+    width: 300px !important;
+    margin: 0;
   }
-  .input-area{
-      margin: 5px !important;
-       width: 300px !important;
-       margin: 0 auto !important;
-       display: flex;
-       justify-content: center;
+  .input-area {
+    margin: 5px !important;
+    width: 300px !important;
+    margin: 0 auto !important;
+    display: flex;
+    justify-content: center;
   }
-  #button-addon2{
-      margin-top: 10px;
+  #button-addon2 {
+    margin-top: 10px;
   }
 }

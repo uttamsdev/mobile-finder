@@ -7,6 +7,7 @@ const toggleSpinner = displayStyle => {
 const toggleSearchResult = displayStyle => {
     document.getElementById('search-result-toggle').style.display = displayStyle;
 }
+//load Phones function
 const loadPhones = () => {
     toggleSpinner('block');
     toggleSearchResult('none');
@@ -30,6 +31,7 @@ const loadPhones = () => {
     .then(data => displayPhones(data.data.slice(0,20)))
 }
 
+//Display All phones function
 const displayPhones = phones => {
     console.log(phones);
     if(phones.length === 0){
@@ -58,10 +60,12 @@ const displayPhones = phones => {
         errorMsg.innerText = '';
         
     })
+    //control toggle spinner & search result after show result
     toggleSpinner('none');
     toggleSearchResult('block');
 }
 
+//load phone details by ID
 const loadPhoneDetails = id => {
     // console.log(phoneId);
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -70,13 +74,15 @@ const loadPhoneDetails = id => {
     .then(data => displayPhoneDetails(data.data))
 }
 
+//Dipslay phone details function
 const displayPhoneDetails = phone => {
     console.log(phone.mainFeatures);
     const divContainer = document.getElementById('phone-details');
     const div = document.createElement('div');
+    div.className = "search-details";
     div.innerHTML = `
-        <div class="card" style="width: 18rem;">
-            <img src="${phone.image}" class="card-img-top" alt="...">
+        <div class="card" style="width: 30rem;">
+            <img src="${phone.image}" class="card-img-top w-50 text-center" alt="...">
             <div class="card-body">
             <p class="text-danger"><span class="fw-bold text-black">Release date: </span>${phone.releaseDate ? phone.releaseDate : 'No Release Date Found'}</p>
             <h4>Main Features: </h4>
