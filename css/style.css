@@ -50,6 +50,16 @@ body {
 .search-details{
     margin: 10px 20px;
 }
+#load-more{
+    display: none;
+    margin-bottom: 100px;
+}
+#load-more-phones{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 30px;
+
+}
 
 /* phone devices responsive  */
 @media (max-width: 688px) {
@@ -77,4 +87,9 @@ body {
   /* .search-details{
       width: 200px !important;
   } */
+  #load-more-phones{
+  grid-template-columns: repeat(1,1fr);
+  grid-column-gap: 20px;
+
+}
 }

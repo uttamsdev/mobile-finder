@@ -1,4 +1,6 @@
+let urls = '';
 const errorMsg = document.getElementById('error-msg');
+const loadMorePhones = document.getElementById('load-more-phones');
 // toggle spinner 
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
@@ -14,35 +16,46 @@ const loadPhones = () => {
     const searchText = document.getElementById('input-field');
     const searchTextValue = (searchText.value).toLowerCase();
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchTextValue}`;
-    // console.log(url);
+    urls = url;
     searchText.value = '';
     if(searchTextValue == ''){
         errorMsg.innerText = 'Search something... Input field cannot be empty.'
         toggleSpinner('none');
+        document.getElementById('load-more').style.display = 'none';
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
         return;
     }
     if(searchTextValue < 0){
         errorMsg.innerText = 'You cannot give negaitve value....'
         toggleSpinner('none');
+        document.getElementById('load-more').style.display = 'none';
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
         return;
     }
     fetch(url)
     .then(response => response.json())
-    .then(data => displayPhones(data.data.slice(0,20)))
+    .then(data => displayPhones(data.data))
 }
 
 //Display All phones function
 const displayPhones = phones => {
+    const twentyPhones = phones.slice(0,20);
     console.log(phones);
-    if(phones.length === 0){
+    console.log(twentyPhones);
+    if(twentyPhones.length === 0){
         errorMsg.innerText = 'No phone found...';
+        document.getElementById('load-more').style.display = 'none'
         // return;
     }
     const divContainer = document.getElementById('search-result');
     divContainer.textContent = '';
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
-    phones.forEach(phone => {
+    loadMorePhones.textContent = '';
+    document.getElementById('load-more').style.display = 'none';
+    twentyPhones.forEach(phone => {
         // console.log(phone);
         const div = document.createElement('div');
         div.className = "phone-container";
@@ -63,6 +76,10 @@ const displayPhones = phones => {
     //control toggle spinner & search result after show result
     toggleSpinner('none');
     toggleSearchResult('block');
+    //load more phones
+    if(phones.length > 20){
+        document.getElementById('load-more').style.display = 'block';
+    }
 }
 
 //load phone details by ID
@@ -79,14 +96,14 @@ const loadPhoneDetails = id => {
 
 //Dipslay phone details function
 const displayPhoneDetails = phone => {
-    // console.log(phone.mainFeatures.sensors);
     const divContainer = document.getElementById('phone-details');
-    const div = document.createElement('div');
-    div.className = "search-details";
-    div.innerHTML = `
+    // const div = document.createElement('div');
+    divContainer.className = "search-details";
+    divContainer.innerHTML = `
         <div class="card">
             <img src="${phone.image}" class="card-img-top w-50 text-center" alt="...">
             <div class="card-body">
+            <h4>${phone.name}</h4>
             <p class="text-danger"><span class="fw-bold text-black">Release date: </span>${phone.releaseDate ? phone.releaseDate : 'No Release Date Found'}</p>
             <h4>Main Features: </h4>
             <p><span class="fw-bold">ChipSet : </span>${phone.mainFeatures.chipSet}</p>
@@ -96,43 +113,61 @@ const displayPhoneDetails = phone => {
             <span class="fw-bold">Sensor : </span>
             <ul id="sensor"></ul>
             <h5>Other Features: </h5>
-            <p><span class="fw-bold">WLAN : </span>${phone.others.WLAN ? phone.others.WLAN : 'Not found'}</p>
-            <p><span class="fw-bold">Bluetooth : </span>${phone.others.Bluetooth ? phone.others.Bluetooth : 'Not found'}</p>
-            <p><span class="fw-bold">GPS : </span>${phone.others.GPS ? phone.others.GPS : 'Not found'}</p>
-            <p><span class="fw-bold">NFC : </span>${phone.others.NFC ? phone.others.NFC : 'Not found'}</p>
-            <p><span class="fw-bold">Radio : </span>${phone.others.Radio ? phone.others.Radio : 'Not found'}</p>
-            <p><span class="fw-bold">USB : </span>${phone.others.USB ? phone.others.Radio: 'Not found'}</p>
+            <p><span class="fw-bold">WLAN : </span>${phone.others?.WLAN ? phone.others.WLAN : 'Not found'}</p>
+            <p><span class="fw-bold">Bluetooth : </span>${phone.others?.Bluetooth ? phone.others.Bluetooth : 'Not found'}</p>
+            <p><span class="fw-bold">GPS : </span>${phone.others?.GPS ? phone.others.GPS : 'Not found'}</p>
+            <p><span class="fw-bold">NFC : </span>${phone.others?.NFC ? phone.others.NFC : 'Not found'}</p>
+            <p><span class="fw-bold">Radio : </span>${phone.others?.Radio ? phone.others.Radio : 'Not found'}</p>
+            <p><span class="fw-bold">USB : </span>${phone.others?.USB ? phone.others.USB : 'Not found'}</p>
 
 
             </div>
         </div>
     `;
-    divContainer.appendChild(div);
+    // divContainer.appendChild(div);
 }
 
 const displaySensor = sensors => {
     
     const allSensor = sensors.mainFeatures.sensors;
-    // console.log(sensor);
-    
     const sensorID = document.getElementById('sensor');
-    // console.log(sensorID);
-    // console.log(sensors);
-    // sensors.forEach(sensor => {
-    //     const li = document.createElement('li');
-    //     li.innerText = `${sensor}`;
-    //     sensorID.appendChild(li);
-    // })
-    // console.log(sensors.length);
     allSensor.forEach(sensor => {
         console.log(sensor);
-        // const li = document.createElement('li');
         const li = document.createElement('li');
         li.innerHTML = `${sensor}`;
         sensorID.appendChild(li);
-        // li.innerText = `${sensor}`;
-        // sensorID.appendChild(sensor);
     })
     console.log(sensorID);
     
+}
+
+const loadMore = () => {
+    fetch(urls)
+    .then(response => response.json())
+    .then(data => displayMore(data.data))
+}
+const displayMore = phones => {
+    // console.log(phones);
+    remainingPhones = phones.slice(20,);
+    
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
+
+    remainingPhones.forEach(phone => {
+        const div = document.createElement('div');
+        div.className = "phone-container";
+        div.innerHTML = `
+        <div class="card border-0 text-center">
+            <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${phone.phone_name}</h5>
+                <h6>${phone.brand}</h6>
+                <a href="#" class="btn btn-danger" onclick="loadPhoneDetails('${phone.slug}')">Explore More</a>
+            </div>
+        </div>
+        `;
+        loadMorePhones.appendChild(div);
+        errorMsg.innerText = '';
+
+})
 }
