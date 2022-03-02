@@ -42,8 +42,6 @@ const loadPhones = () => {
 //Display All phones function
 const displayPhones = phones => {
     const twentyPhones = phones.slice(0,20);
-    console.log(phones);
-    console.log(twentyPhones);
     if(twentyPhones.length === 0){
         errorMsg.innerText = 'No phone found...';
         document.getElementById('load-more').style.display = 'none'
@@ -55,7 +53,6 @@ const displayPhones = phones => {
     loadMorePhones.textContent = '';
     document.getElementById('load-more').style.display = 'none';
     twentyPhones.forEach(phone => {
-        // console.log(phone);
         const div = document.createElement('div');
         div.className = "phone-container";
         div.innerHTML = `
@@ -83,7 +80,6 @@ const displayPhones = phones => {
 
 //load phone details by ID
 const loadPhoneDetails = id => {
-    console.log(id);
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
     .then(response => response.json())
@@ -122,20 +118,16 @@ const displayPhoneDetails = phone => {
             </div>
         </div>
     `;
-    // divContainer.appendChild(div);
 }
 
 const displaySensor = sensors => {
-    
     const allSensor = sensors.mainFeatures.sensors;
     const sensorID = document.getElementById('sensor');
     allSensor.forEach(sensor => {
-        console.log(sensor);
         const li = document.createElement('li');
         li.innerHTML = `${sensor}`;
         sensorID.appendChild(li);
     })
-    console.log(sensorID);
     
 }
 
