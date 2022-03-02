@@ -47,7 +47,6 @@ const displayPhones = phones => {
     if(twentyPhones.length === 0){
         errorMsg.innerText = 'No phone found...';
         document.getElementById('load-more').style.display = 'none'
-        // return;
     }
     const divContainer = document.getElementById('search-result');
     divContainer.textContent = '';
@@ -97,7 +96,6 @@ const loadPhoneDetails = id => {
 //Dipslay phone details function
 const displayPhoneDetails = phone => {
     const divContainer = document.getElementById('phone-details');
-    // const div = document.createElement('div');
     divContainer.className = "search-details";
     divContainer.innerHTML = `
         <div class="card">
@@ -147,7 +145,6 @@ const loadMore = () => {
     .then(data => displayMore(data.data))
 }
 const displayMore = phones => {
-    // console.log(phones);
     remainingPhones = phones.slice(20,);
     
     const phoneDetails = document.getElementById('phone-details');

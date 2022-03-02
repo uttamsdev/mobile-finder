@@ -5,11 +5,8 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  /* background-color: #f3f1ff; */
   background-color: #f5f4fa;
-  /* background-color: #eb96960c; */
 }
-/* search results area  */
 #search-result {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -84,9 +81,6 @@ body {
   #button-addon2 {
     margin-top: 10px;
   }
-  /* .search-details{
-      width: 200px !important;
-  } */
   #load-more-phones{
   grid-template-columns: repeat(1,1fr);
   grid-column-gap: 20px;
